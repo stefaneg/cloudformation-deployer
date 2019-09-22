@@ -30,7 +30,7 @@ jobs:
           else
             export PUSHARG=
           fi
-          ls -laR
+          ls -l
           (./build-docker.sh ${PUSHARG})
     - save_cache:
         key: v1-{{ .Branch }}-{{ epoch }}
