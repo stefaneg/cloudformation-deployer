@@ -4,7 +4,7 @@ set -e
 PUSH=$1
 
 # This is the official version label for this project.
-MAJOR_MINOR=0.2
+MAJOR_MINOR=0.1
 
 if [ -z "${REPO_NAME}" ]; then
 	export REPO_NAME=gulli/cloudformation-deployer
