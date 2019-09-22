@@ -1,0 +1,37 @@
+version: 2
+jobs:
+  build:
+    docker:
+    - image: docker:19-git
+
+    working_directory: ~/workdir
+
+    steps:
+    - checkout
+    - setup_remote_docker
+    - restore_cache:
+        keys:
+        - v1-{{ .Branch }}
+        paths:
+        - /caches/layercache.tar
+    - run:
+        name: Load Docker image layer cache
+        command: |
+          mkdir -p /caches
+          set +o pipefail
+          docker load -i /caches/layercache.tar | true
+    - run:
+        name: Build application Docker image
+        command: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWD
+
+          if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            export PUSHARG=push
+          else
+            export PUSHARG=
+          fi
+          (cd agent && ./build-docker.sh ${PUSHARG})
+    - save_cache:
+        key: v1-{{ .Branch }}-{{ epoch }}
+        paths:
+        - /caches/layercache.tar
