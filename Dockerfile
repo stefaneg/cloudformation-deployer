@@ -13,6 +13,8 @@ RUN apk --no-cache add npm
 
 RUN apk --no-cache add jq
 
+RUN apk --no-cache add gettext
+
 RUN addgroup -S deployergroup && adduser -S deployeruser -G deployergroup -s /bin/bash
 
 RUN chown -R deployeruser:deployergroup /home/deployeruser

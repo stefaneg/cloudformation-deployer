@@ -4,6 +4,9 @@ echo "Create or update stack"
 
 . ./bashfunctions
 
+. ./aws-login.sh
+
+
 if [ -f "./stack_parameters.sh" ]; then
 	echo "Setting stack parameters"
 	. ./stack_parameters.sh $@
