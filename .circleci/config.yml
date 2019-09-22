@@ -15,6 +15,11 @@ jobs:
         paths:
         - /caches/layercache.tar
     - run:
+        name: Install bash
+        command: |
+          set +o pipefail
+          apk --no-cache update && apk --no-cache add bash
+    - run:
         name: Load Docker image layer cache
         command: |
           mkdir -p /caches
