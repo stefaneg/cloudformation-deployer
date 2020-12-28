@@ -17,15 +17,16 @@ export THISDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 export STACK_NAME=$1
 
 requireVariable STACK_NAME
+requireVariable AWS_REGION
 
 if test -x "./pre-stack.sh"; then
 	echo "Pre stack script found, executing"
 	. ./pre-stack.sh
 fi
 
-echo "Creating or updating cloudformation stack ${STACK_NAME}"
+echo "Creating or updating cloudformation stack ${STACK_NAME} in region ${AWS_REGION"
 
-aws cloudformation describe-stacks --region eu-west-1 --stack-name ${STACK_NAME} > /dev/null 2>&1
+aws cloudformation describe-stacks --region ${AWS_REGION} --stack-name ${STACK_NAME} > /dev/null 2>&1
 
 if [ $? = 0 ]; then
 	echo "Stack ${STACK_NAME} exists, updating"

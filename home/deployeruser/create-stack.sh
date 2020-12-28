@@ -3,9 +3,9 @@
 . ./bashfunctions
 
 requireVariable STACK_NAME
+requireVariable AWS_REGION
 
-export AWS_REGION=eu-west-1
-echo "Creating stack...${STACK_NAME}"
+echo "Creating stack...${STACK_NAME} in region ${AWS_REGION}"
 
 if [ ! -z "${STACK_PARAMETERS}" ]; then
 	export CLI_STACK_PARAMS="--parameters ${STACK_PARAMETERS}"

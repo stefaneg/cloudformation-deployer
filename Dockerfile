@@ -27,27 +27,27 @@ ADD --chown=deployeruser:deployergroup . .
 
 WORKDIR /home/deployeruser
 
-LABEL shepherd.name="aws-cloudformation-deployer"
+LABEL name="aws-cloudformation-deployer"
 ARG BRANCH_NAME
 ENV BRANCH_NAME ${BRANCH_NAME}
 
-LABEL shepherd.git.branch=${BRANCH_NAME}
+LABEL git.branch=${BRANCH_NAME}
 ARG GIT_URL
-LABEL shepherd.git.url=${GIT_URL}
+LABEL git.url=${GIT_URL}
 ENV GIT_URL ${GIT_URL}
 
 ARG GIT_HASH
-LABEL shepherd.git.hash=${GIT_HASH}
+LABEL git.hash=${GIT_HASH}
 ENV GIT_HASH ${GIT_HASH}
 
 ARG SEMANTIC_VERSION
-LABEL shepherd.version=${SEMANTIC_VERSION}
+LABEL version=${SEMANTIC_VERSION}
 ENV SEMANTIC_VERSION ${SEMANTIC_VERSION}
 
 ARG LAST_COMMITS
-LABEL shepherd.lastcommits=${LAST_COMMITS}
+LABEL lastcommits=${LAST_COMMITS}
 ENV LAST_COMMITS ${LAST_COMMITS}
 
 ARG BUILD_DATE
-LABEL shepherd.builddate=${BUILD_DATE}
+LABEL builddate=${BUILD_DATE}
 ENV BUILD_DATE ${BUILD_DATE}

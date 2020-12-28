@@ -14,6 +14,6 @@ fi
 
 requireVariable STACK_NAME
 
-aws --region eu-west-1 cloudformation delete-stack --stack-name ${STACK_NAME}
+aws --region ${AWS_REGION}  cloudformation delete-stack --stack-name ${STACK_NAME}
 
 echo ${STACK_NAME} deleted

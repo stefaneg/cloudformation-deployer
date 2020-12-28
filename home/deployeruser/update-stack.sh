@@ -3,8 +3,7 @@
 . ./bashfunctions
 
 requireVariable STACK_NAME
-
-export AWS_REGION=eu-west-1
+requireVariable AWS_REGION
 
 if [ ! -z "${STACK_PARAMETERS}" ]; then
 	export CLI_STACK_PARAMS="--parameters ${STACK_PARAMETERS}"
